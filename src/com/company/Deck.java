@@ -6,27 +6,29 @@ import java.util.List;
 //Challenge Two: Deck Class
 public class Deck
 {
-    ArrayList<Card> unDealt;
-    ArrayList<Card> Dealt;
+    List<Card> unDealt;
+    List<Card> Dealt;
 
-    public Deck(String[] rank, String[] suit, int[] pointValue)
+    public Deck(String[] Rank, String[] Suit, int[] pointValue)
     {
-        List<Card> deck = new ArrayList<Card>();
+        List<Card> deck = new ArrayList();
 
-        for(int i = 0; i < rank.length; i++)
+        for(int i = 0; i < Suit.length; i++)
         {
-            for(int j = 0; i < suit.length; i++)
+            for(int j = 0; j < Rank.length; j++)
             {
-                deck.add(new Card(rank[j], suit[i], pointValue[j]));
+                deck.add(new Card(Rank[j] , Suit[i], pointValue[j]));
             }
         }
+        this.unDealt = deck;
+        this.Dealt = new ArrayList();
     }
 
+    //Challenge Three: Deck Tester
     public boolean isEmpty()
     {
         return unDealt.size() <= 0;
     }
-
     public int size(int amount)
     {
         return unDealt.size();
@@ -50,13 +52,12 @@ public class Deck
         {
             this.unDealt.add(this.Dealt.get(i));
         }
-        for(int k = this.unDealt.size()-1; k > 0; k--)
+        for(int j = this.unDealt.size()-1; j > 0; j--)
         {
-            int r = (int)(Math.random() * this.unDealt.size());
-            Card temp = this.unDealt.get(k);
-            this.unDealt.set(k, this.unDealt.get(r));
-            this.unDealt.set(r, temp);
+            int k = (int)(Math.random() * this.unDealt.size());
+            Card temp = this.unDealt.get(j);
+            this.unDealt.set(j, this.unDealt.get(k));
+            this.unDealt.set(k, temp);
         }
-
     }
 }
